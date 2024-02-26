@@ -33,37 +33,6 @@ export default defineComponent({
     },
   },
 
-  props: {
-    organizer: {
-      type: String,
-      required: true,
-    },
-
-    place: {
-      type: String,
-      required: true,
-    },
-
-    date: {
-      type: Number,
-      required: true,
-    },
-  },
-
-  computed: {
-    isoDate() {
-      return new Date(this.date).toISOString().split('T')[0];
-    },
-
-    localDate() {
-      return new Date(this.date).toLocaleString(navigator.language, {
-        year: 'numeric',
-        month: 'long',
-        day: 'numeric',
-      });
-    },
-  },
-
   template: `
     <ul class="meetup-info">
       <li>
