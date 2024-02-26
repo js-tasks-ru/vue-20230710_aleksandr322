@@ -31,27 +31,20 @@ const emails = [
 ];
 
 // Создаем Vue приложение
-const app = createApp({
+createApp({
   data() {
     return {
-      searchText: '',
-      emails: emails.map(email => ({ address: email, marked: false }))
+      emails,
+      filter: '',
     };
   },
-  computed: {
-    filteredEmails() {
-      const searchQuery = this.searchText.toLowerCase();
-      return this.emails.map(email => {
-        const marked = email.address.toLowerCase().includes(searchQuery);
-        return { ...email, marked };
-      });
-    }
-  },
-  methods: {
-    handleSearch() {
-      console.log('Search:', this.searchText);
-    }
-  }
-});
 
-app.mount('#app');
+  computed: {
+    markedEmails() {
+      return this.emails.map((email) => ({
+        email,
+        marked: this.filter && email.includes(this.filter),
+      }));
+    },
+  },
+}).mount('#app');
