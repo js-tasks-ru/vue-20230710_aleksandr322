@@ -2,16 +2,14 @@ import { defineComponent } from './vendor/vue.esm-browser.js';
 
 export default defineComponent({
   name: 'CounterButton',
-
-  // Теперь текущее значение счётчика приходит от родителя через входной параметр
   props: {
     count: {
-      // Не забываем указать тип
       type: Number,
-      // Значение по умолчанию - 0
-      default: 0,
-    },
+      default: 0
+    }
   },
+
+   // Компонент должен иметь входной параметр и порождать событие
 
   emits: ['update:count'],
 
@@ -23,4 +21,7 @@ export default defineComponent({
   },
 
   template: `<button type="button" @click="increment">{{ count }}</button>`,
+
+
+
 });

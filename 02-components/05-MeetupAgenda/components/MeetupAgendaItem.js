@@ -1,9 +1,9 @@
 import { defineComponent } from '../vendor/vue.esm-browser.js';
+// import { agendaItemIcons, agendaItemDefaultTitles } from './meetupService.js';
 import { agendaItemIcons, agendaItemDefaultTitles } from '../meetupService.js';
 
 export default defineComponent({
   name: 'MeetupAgendaItem',
-
   props: {
     agendaItem: {
       type: Object,
@@ -24,7 +24,6 @@ export default defineComponent({
       return `/assets/icons/icon-${this.icon}.svg`;
     },
   },
-
   template: `
     <div class="agenda-item">
       <div class="agenda-item__col">

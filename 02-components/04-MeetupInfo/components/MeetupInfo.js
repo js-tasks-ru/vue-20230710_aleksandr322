@@ -2,7 +2,6 @@ import { defineComponent } from '../vendor/vue.esm-browser.js';
 
 export default defineComponent({
   name: 'MeetupInfo',
-
   props: {
     organizer: {
       type: String,
