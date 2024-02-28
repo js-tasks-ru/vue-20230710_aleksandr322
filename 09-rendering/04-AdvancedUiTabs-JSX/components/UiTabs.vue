@@ -1,7 +1,7 @@
 <script lang="jsx">
 // Предлагается решать задачу с использованием JSX, но вы можете использовать и чистые рендер-функции
 
-// import UiTab from './UiTab.vue';
+import UiTab from './UiTab.vue';
 
 export default {
   name: 'UiTabs',
@@ -19,16 +19,30 @@ export default {
   },
 
   render() {
+    // Получаем переданные вкладки из слота по умолчанию - массив из vnode
+    const content = this.$slots.default();
+    // Фильтруем узлы по type, оставляя только UiTab
+    const tabs = content.filter((item) => item.type === UiTab);
+    // Находим активную вкладку, проверяя значение name входных параметров
+    const activeTab = tabs.find((tab) => tab.props.name === this.active);
+
+    // Рендерим вкладки:
+    // - Ссылки - по параметрам переданных UiTabs
+    // - Контент - непосредственно активную вкладку
     return (
       <div class="tabs">
         <div class="tabs__nav" role="tablist">
-          <a class="tabs__tab" role="tab">Tab</a>
-          <a class="tabs__tab tabs__tab_active" role="tab">Active Tab</a>
-          <a class="tabs__tab" role="tab">Tab</a>
+          {tabs.map((tab) => (
+            <a
+              class={['tabs__tab', tab.props.name === this.active ? 'tabs__tab_active' : '']}
+              role="tab"
+              onClick={() => this.setActive(tab.props.name)}
+            >
+              {tab.props.title}
+            </a>
+          ))}
         </div>
-        <div class="tabs__content">
-          ACTIVE TAB CONTENT
-        </div>
+        <div class="tabs__content">{activeTab}</div>
       </div>
     );
   },
