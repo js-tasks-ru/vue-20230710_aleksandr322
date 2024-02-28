@@ -36,10 +36,12 @@ export default {
 
   methods: {
     handleSubmit() {
-      // Требуется обработать сабмит формы
+      this.$router.push(this.$route.query.from ?? { name: 'index' });
     },
   },
 };
 </script>
+
+
 
 <style></style>

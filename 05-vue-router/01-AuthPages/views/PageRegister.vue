@@ -53,7 +53,7 @@ export default {
 
   methods: {
     handleSubmit() {
-      // Требуется обработать сабмит формы
+      this.$router.push({ name: 'login' });
     },
   },
 };
